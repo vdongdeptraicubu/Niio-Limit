@@ -35,7 +35,7 @@ global.Fca = new Object({
             "AutoLogin": false,
             "BroadCast": true,
             "AuthString": "",
-            "EncryptFeature": false,
+            "EncryptFeature": true,
             "ResetDataLogin": false,
             "AutoInstallNode": true,
             "AntiSendAppState": true,
@@ -180,7 +180,7 @@ catch (e) {
     process.exit(1)
 }
     if (global.Fca.Require.fs.existsSync(process.cwd() + '/FastConfigFca.json')) {
-        
+
         for (let i of All_Variable) {
             if (Data_Setting[i] == undefined) {
                 Data_Setting[i] = global.Fca.Data.ObjFastConfig[i];

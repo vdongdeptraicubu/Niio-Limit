@@ -210,7 +210,7 @@ function onBot({ models }) {
             logger.loader(` Tổng số sự kiện: ${global.client.events.size}`);
             logger.loader("┗━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             logger.loader(`Thời gian khởi động chương trình: ${Math.floor((Date.now() - global.timeStart) / 1000)}s`);
-            console.log(chalk.yellow(figlet.textSync('START BOT', { horizontalLayout: 'full' })));
+            console.log(chalk.yellow(figlet.textSync('NIIO LIMIT', { horizontalLayout: 'full' })));
             // Auto Clean Cache by Lương Trường Khôi (@LunarKrystal) làm riêng cho file này - KHÔNG ĐƯỢC THAY ĐỔI
             if (global.config.autoCleanCache.Enable) {
             const cachePaths = global.config.autoCleanCache.CachePaths || [];

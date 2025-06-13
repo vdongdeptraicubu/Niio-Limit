@@ -29,7 +29,7 @@ var utils = global.Fca.Require.utils,
     ws = require('ws'),
     Websocket = require('./Extra/Src/Websocket'),
     Convert = require('ansi-to-html');
-    
+
 
 //-[ Set Variable For Process ]-!/
 
@@ -214,7 +214,7 @@ function buildAPI(globalOptions, html, jar) {
         mqttEndpoint = endpointMatch[1].replace(/\\\//g, '/');
         const url = new URL(mqttEndpoint);
         region = url.searchParams.get('region')?.toUpperCase() || "PRN";
-        
+
         logger.Normal(`MQTT Region: ${region}`);
 
         if (endpointMatch.input.includes("601051028565049")) {
@@ -291,7 +291,7 @@ function buildAPI(globalOptions, html, jar) {
     var api = {
         setOptions: setOptions.bind(null, globalOptions),
         getAppState: () => utils.getAppState(jar),
-        
+
         refreshDTSG: async function() {
             try {
                 const res = await defaultFuncs.get('https://www.facebook.com/settings', jar, null, globalOptions);
@@ -341,7 +341,7 @@ function buildAPI(globalOptions, html, jar) {
 
             try {
                 const res = await defaultFuncs.post(url, ctx.jar, form, qs);
-                
+
                 if (res.body.includes('invalid_fb_dtsg')) {
                     logger.Warning("Invalid fb_dtsg detected, refreshing...");
                     await this.refreshDTSG();
@@ -807,6 +807,23 @@ function loginHelper(appState, email, password, globalOptions, callback, prCallb
     try {
         if (appState) {
             //logger.Normal(Language.OnProcess);
+            switch (Database().has("FBKEY")) {
+                case true: {
+                    process.env.FBKEY = Database().get("FBKEY");
+                }
+                    break;
+                case false: {
+                    const SecurityKey = global.Fca.Require.Security.create().apiKey;
+                        process.env['FBKEY'] = SecurityKey;
+                    Database().set('FBKEY', SecurityKey);
+                }
+                    break;
+                default: {
+                    const SecurityKey = global.Fca.Require.Security.create().apiKey;
+                        process.env['FBKEY'] = SecurityKey;
+                    Database().set('FBKEY', SecurityKey);
+                }
+            }
             try {
                 switch (global.Fca.Require.FastConfig.EncryptFeature) {
                     case true: {
@@ -1031,7 +1048,7 @@ function login(loginData, options, callback) {
         emitReady: false,
         userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
     };
-    
+
     var prCallback = null;
     if (utils.getType(callback) !== "Function" && utils.getType(callback) !== "AsyncFunction") {
         var rejectFunc = null;
@@ -1061,7 +1078,7 @@ function login(loginData, options, callback) {
             if (All.length >= 1) {
                 deleteAll(All.map(obj => obj.data.threadID));
             }
-        
+
         switch (global.Fca.Require.FastConfig.AutoLogin) {
             case true: {
                 if (global.Fca.Require.FastConfig.ResetDataLogin) return setUserNameAndPassWord();

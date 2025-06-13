@@ -15,7 +15,6 @@
   "author": "Cao.C.Đạt",
   "license": "GPL-3.0",
   "dependencies": {
-    "@distube/ytdl-core": "git+https://github.com/ToddyTheNoobDud/ytdl-core-stuff.git",
     "@google/generative-ai": "^0.17.0",
     "acorn": "^8.10.0",
     "aes-js": "^3.1.2",
@@ -28,11 +27,12 @@
     "cfonts": "^3.3.0",
     "chalk": "^4.1.2",
     "chalkercli": "^1.6.4",
-    "cheerio": "^1.0.0-rc.10",
+    "cheerio": "^1.0.0-rc.12",
     "chess.js": "^1.0.0-beta.6",
     "child_process": "",
     "cors": "^2.8.5",
     "crypto": "",
+    "crypto-js": "^4.2.0",
     "deasync": "^0.1.30",
     "deep-extend": "^0.6.0",
     "dotenv": "^16.4.5",
@@ -79,8 +79,7 @@
     "uniqid": "^5.4.0",
     "uuid": "^10.0.0",
     "websocket-stream": "^5.5.2",
-    "youtube-search-api": "^1.2.1",
-    "ytdl-core": "^4.11.5"
+    "youtube-search-api": "^1.2.1"
   },
   "bugs": {
     "url": "https://github.com/chungdat02/Mirai-V2/issues"
